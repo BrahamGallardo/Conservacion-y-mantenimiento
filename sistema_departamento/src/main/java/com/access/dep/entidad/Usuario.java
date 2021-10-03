@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 import org.hibernate.annotations.GenericGenerator;
 
-import com.access.dep.entidad.Rol;
+//import com.access.dep.entidad.Rol;
 
 import javax.persistence.JoinColumn;
 
