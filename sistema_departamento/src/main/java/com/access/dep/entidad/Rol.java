@@ -23,7 +23,7 @@ public class Rol implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private int id;
+	private Long id;
 	
 	@Column
 	private String nombre;
@@ -32,11 +32,11 @@ public class Rol implements Serializable {
 	private int area;
 	       //Getters, Setters, HashCode, Equals & ToString Functions
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -66,7 +66,7 @@ public class Rol implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + area;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
@@ -82,7 +82,10 @@ public class Rol implements Serializable {
 		Rol other = (Rol) obj;
 		if (area != other.area)
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (nombre == null) {
 			if (other.nombre != null)
@@ -91,5 +94,7 @@ public class Rol implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 	
 }

@@ -30,7 +30,7 @@ public class Usuario implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO, generator="native")
 	@GenericGenerator(name="native",strategy="native")
-	private int id;
+	private Long id;
 	
 	@Column 
 	private int idTrabajador;
@@ -50,17 +50,17 @@ public class Usuario implements Serializable{
 	
 	public Usuario() {	}
 	
-	public Usuario(int id) {
+	public Usuario(Long id) {
 		this.id = id;
 	}
 	
 	//Getters, Setters, HashCode, Equals & ToString Functions
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -110,7 +110,7 @@ public class Usuario implements Serializable{
 		int result = 1;
 		result = prime * result + ((confirmPassword == null) ? 0 : confirmPassword.hashCode());
 		result = prime * result + ((contrasena == null) ? 0 : contrasena.hashCode());
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + idTrabajador;
 		result = prime * result + ((nombreDeUsuario == null) ? 0 : nombreDeUsuario.hashCode());
 		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
@@ -136,7 +136,10 @@ public class Usuario implements Serializable{
 				return false;
 		} else if (!contrasena.equals(other.contrasena))
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (idTrabajador != other.idTrabajador)
 			return false;
@@ -158,6 +161,8 @@ public class Usuario implements Serializable{
 		return "Usuario [id=" + id + ", idTrabajador=" + idTrabajador + ", nombreDeUsuario=" + nombreDeUsuario
 				+ ", contrasena=" + contrasena + ", confirmPassword=" + confirmPassword + ", roles=" + roles + "]";
 	}
+
+	
 	
 	
 	
