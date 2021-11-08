@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -24,25 +27,33 @@ public class Trabajadores implements Serializable{
 	@Column 
 	private Long idtrabajador;
 
-	@Column 
+	@Column
+	@NotBlank
+	@Size(min=3,max=13,message="El tamaño debe se de al menos 3 letras y máximo de 15")
 	private String nombre_trabajador;
 	
 	@Column 
+	@NotBlank
+	@Email
 	private String email;
 	
 	@Column 
 	private String telefono;
 	
-	@Column 
+	@Column
+	@NotBlank
 	private Long idtipo_trabajador;
 	
-	@Column 
+	@Column
+	@NotBlank
 	private Long idrol;
 	
-	@Column 
+	@Column
+	@NotBlank
 	private Long idestado;
 	
-	@Column 
+	@Column
+	@NotBlank
 	private Long idhorario;
 	
 	@Column 
